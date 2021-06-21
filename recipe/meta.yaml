@@ -10,24 +10,28 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<35]
+  noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
   host:
-    - python
+    - python >=3.6
     - pip
+    - wheel
+    - setuptools >=42
     - setuptools_scm >=3.4.1
     - toml
   run:
-    - python
+    - python >=3.6
     - importlib_metadata >=0.5  # [py<38]
 
 test:
   imports:
     - path
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/jaraco/path
