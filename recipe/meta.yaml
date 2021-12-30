@@ -12,10 +12,11 @@ build:
   number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<36]
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
     - wheel
     - setuptools >=42
