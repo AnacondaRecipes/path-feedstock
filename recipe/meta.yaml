@@ -12,19 +12,17 @@ build:
   number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [py<36]
 
 requirements:
   host:
     - python
     - pip
     - wheel
-    - setuptools >=42
+    - setuptools >=56
     - setuptools_scm >=3.4.1
     - toml
   run:
     - python >=3.6
-    - importlib_metadata >=0.5  # [py<38]
 
 test:
   imports:
