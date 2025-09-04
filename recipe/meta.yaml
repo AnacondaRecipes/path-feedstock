@@ -20,7 +20,6 @@ requirements:
     - pip
     - setuptools >=77
     - setuptools_scm >=3.4.1
-    - toml
   run:
     - python
 
