@@ -40,7 +40,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest tests {{ tests_to_deselect }}
+    - pytest -v tests {{ tests_to_deselect }}
 
 about:
   home: https://github.com/jaraco/path
