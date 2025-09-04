@@ -23,6 +23,11 @@ requirements:
   run:
     - python
 
+{% set tests_to_deselect = "" %}
+# raise NotImplementedError("Ownership not available on this platform.")
+{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/test_path.py::TestOwnership::test_get_owner" %}  # [win]
+# test_no_dependencies: subprocess.CalledProcessError: Command '['$PREFIX/bin/python', '-S', '-c', 'import path']' returned non-zero exit status 1.
+{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/test_path.py::test_no_dependencies" %}
 test:
   source_files:
     - tests
@@ -35,8 +40,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    # test_no_dependencies: subprocess.CalledProcessError: Command '['$PREFIX/bin/python', '-S', '-c', 'import path']' returned non-zero exit status 1.
-    - pytest tests -k "not test_no_dependencies"
+    - pytest tests {{ tests_to_deselect }}
 
 about:
   home: https://github.com/jaraco/path
